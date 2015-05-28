@@ -1,2 +1,2 @@
 # ds
-Practicing data structures and other problems.
+data structures and other problems.
