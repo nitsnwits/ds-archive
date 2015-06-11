@@ -6,7 +6,7 @@
 # top() -- Get the top element.
 # getMin() -- Retrieve the minimum element in the stack.
 
-class MinStack:
+class MinStackOld:
 	# constructor
 	def __init__(self):
 		self.stack = []
@@ -67,6 +67,36 @@ class MinStack:
 	def getMinStack(self):
 		return self.minStack
 
+class MinStack(object):
+	"""docstring for MinStack"""
+	def __init__(self, stack = None):
+		super(MinStack, self).__init__()
+		# list of tuples ()
+		self.stack = []
+
+	def push(self, x):
+		currentMin = self.getMin()
+		if currentMin == None or currentMin > x:
+			currentMin = x
+		self.stack.append((x, currentMin))
+
+	def pop(self):
+		self.stack.pop()
+
+	def top(self):
+		if len(self.stack) == 0:
+			return None
+		return self.stack[-1][0]
+
+	def getMin(self):
+		if len(self.stack) == 0:
+			return None
+		else:
+			return self.stack[-1][1]
+		
+
+
+
 
 import unittest
 class TestMinStack(unittest.TestCase):
@@ -90,7 +120,6 @@ class TestMinStack(unittest.TestCase):
 		st.pop()
 		self.assertEqual(st.top(), 1)
 		self.assertEqual(st.getMin(),0)
-		print st.getMinStack()
 
 	def testLoad(self):
 		st = MinStack()
